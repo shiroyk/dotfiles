@@ -13,6 +13,7 @@
 ### 终端透明 :compton
 ### 音量 :pamixer
 ### Dmenu :rofi
+### 壁纸 :feh
 
 
 * * *
