@@ -1,0 +1,234 @@
+# i3 config file
+# see http://i3wm.org/docs/userguide.html for a complete reference!
+# Thinks https://github.com/ID1258/oh-my-i3
+# Super key(mod4 =windows logo key/Command key)
+set $mod Mod4
+#字体
+font pango:monaco regular 12
+
+#---bar---
+bar {
+	status_command  i3status -c ~/.config/i3/i3status
+	#status_command conky -c ~/.config/i3/conky
+	i3bar_command i3bar -t
+	font pango:monaco regular 12
+	#position top
+	#mode hide
+	workspace_buttons yes
+	output eDP1
+	tray_output primary
+	tray_padding 2
+	separator_symbol "   "
+	#height 25	
+	colors {
+	background #00000000
+	statusline #FFFFFF
+	separator #00A5FF
+	# 工作区颜色         边框    背景    文字
+        focused_workspace  #00000000 #1E90FF #FFFFFF
+        active_workspace   #00000000 #00000000 #FFFFFF
+        inactive_workspace #00000000 #00000000 #FFFFFF
+        urgent_workspace   #00000000 #FB7299 #FFFFFF
+        binding_mode       #00000000 #00000000 #FFFFFF	
+	}
+}
+
+#
+floating_modifier $mod
+
+#打开终端
+bindsym $mod+Return exec xfce4-terminal
+
+#关闭窗口
+bindsym mod1+Shift+e kill
+
+#截屏
+bindsym Print exec gnome-screenshot --interactive
+
+#壁纸
+exec --no-startup-id bash ~/.config/i3/wallpaper &
+
+#程序菜单 (Please install rofi)
+bindsym $mod+d exec --no-startup-id bash ~/.config/i3/rofi
+#bindsym $mod+d exec dmenu_run  -fn 'Monaco' -sf '#ffffff' -sb '#fb7299' 
+
+#自动启动
+exec --no-startup-id mate-power-manager
+exec --no-startup-id nm-applet
+exec --no-startup-id sleep 1;fcitx;
+exec --no-startup-id compton &
+exec --no-startup-id google-chrome-stable
+exec --no-startup-id xfce-terminal
+exec --no-startup-id sleep 1;telegram-desktop;
+
+#锁屏
+bindsym $mod+Shift+l exec i3lock -i ~/.config/i3/lock.png , exec sleep .1 && exec xset dpms force off
+
+#程序自动移至工作区
+assign [class="(?i)xfce-terminal"] → $WS1
+assign [class="(?i)Google-chrome"] → $WS2
+assign [class="(?i)telegram"] → $WS3
+assign [class="(?i)virtualbox"] → $WS4
+assign [class="(?i)wps"] → $WS5
+assign [class="(?i)wpp"] → $WS5
+assign [class="(?i)gimp"] → $WS5
+
+#工作区名称
+set $WS1   
+set $WS2   
+set $WS3   
+set $WS4   
+set $WS5   
+set $WS6   
+set $WS7   
+set $WS8   
+set $WS9   
+set $WS0   
+
+# => 工作区切换
+# 自动切换到新打开的窗口
+focus_on_window_activation smart
+
+# 重复切换到当前工作区时会返回上一个所在工作区
+workspace_auto_back_and_forth yes
+
+bindsym $mod+1 workspace $WS1
+bindsym $mod+2 workspace $WS2
+bindsym $mod+3 workspace $WS3
+bindsym $mod+4 workspace $WS4
+bindsym $mod+5 workspace $WS5
+bindsym $mod+6 workspace $WS6
+bindsym $mod+7 workspace $WS7
+bindsym $mod+8 workspace $WS8
+bindsym $mod+9 workspace $WS9
+bindsym $mod+0 workspace $WS0
+
+# => 移动窗口到另一个工作区
+bindsym $mod+shift+1 move container to workspace $WS1, workspace $WS1
+bindsym $mod+shift+2 move container to workspace $WS2, workspace $WS2
+bindsym $mod+shift+3 move container to workspace $WS3, workspace $WS3
+bindsym $mod+shift+4 move container to workspace $WS4, workspace $WS4
+bindsym $mod+shift+5 move container to workspace $WS5, workspace $WS5
+bindsym $mod+shift+6 move container to workspace $WS6, workspace $WS6
+bindsym $mod+shift+7 move container to workspace $WS7, workspace $WS7
+bindsym $mod+shift+8 move container to workspace $WS8, workspace $WS8
+bindsym $mod+shift+9 move container to workspace $WS9, workspace $WS9
+bindsym $mod+shift+0 move container to workspace $WS0, workspace $WS0
+
+#新窗口的样式
+new_window none
+new_float normal
+hide_edge_borders both
+
+# 窗口颜色                边框    背景    文字    提示
+client.focused          #333333 #333333 #FFFFFF #333333
+client.focused_inactive #999999 #999999 #FFFFFF #3399FF
+client.unfocused        #999999 #999999 #FFFFFF #3399FF
+client.urgent           #990000 #990000 #FFFFFF #990000
+client.placeholder      #000000 #000000 #FFFFFF #000000
+client.background       #FFFFFF
+
+#窗口间隙(全局)
+gaps inner 10
+gaps outer 5
+
+#智能程序间隙
+#smart_borders on
+
+#浮动窗口
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+#自定义程序浮动(find the programs'names in "/usr/share/applictions")
+#for_window [class="VirtualBox"] floating enable
+for_window [class="(?i)thunar"] floating enable
+for_window [class="(?i)leafpad"] floating enable
+#for_window [class="(?i)telegram"] floating enable
+for_window [class="(?i)arandr"] floating enable
+for_window [class="(?i)fcitx-configtool"] floating enable
+for_window [class="(?i)feh"] floating enable
+for_window [class="(?i)nmtui"] floating enable
+
+#隐藏显示程序(minus is "-" and plus is "+".)
+bindsym $mod+minus move scratchpad
+bindsym $mod+plus scratchpad show
+
+#改变焦点
+bindsym mod1+a focus left
+bindsym mod1+w focus up
+bindsym mod1+s focus down
+bindsym mod1+d focus right
+
+#移动窗口
+bindsym $mod++h move left
+bindsym $mod++j move down
+bindsym $mod++k move up
+bindsym $mod++l move right
+
+#窗口分割
+bindsym $mod+v split v
+bindsym $mod+b split h
+
+#窗口全屏
+bindsym $mod+f fullscreen toggle
+
+#切换浮动窗口的焦点
+bindsym $mod+Tab focus mode_toggle
+
+#切换浮动
+bindsym $mod+space floating toggle
+
+#切换最近的工作区
+bindsym mod1+Tab workspace prev
+
+#重新加载配置
+#bindsym $mod+Shift+c reload
+
+#重启i3 (preserves ysour layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+#===电源菜单===
+set $mode_system 系统:锁屏(L) 注销(E) 关机(O) 重启(R) 取消(Esc)
+bindsym $mod+Shift+e mode "$mode_system"
+mode "$mode_system" {
+    bindsym l exec i3lock -i ~/Pictures/lock.png  , exec sleep .1 && exec xset dpms force off, mode "default"
+    bindsym e exec --no-startup-id killall i3, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym o exec --no-startup-id systemctl poweroff, mode "default"
+    bindsym Escape mode "default"
+}
+
+#屏幕关闭(time unit: seconds)
+#exec --no-startup-id xset dpms 300 1357 6789
+exec --no-startup-id xset dpms 600 1200 6000
+
+#改变窗口大小 (you can also use the mouse for that)
+#mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        #bindsym j resize shrink width 10 px or 10 ppt
+        #bindsym k resize grow height 10 px or 10 ppt
+        #bindsym l resize shrink height 10 px or 10 ppt
+        #bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        #bindsym Left resize shrink width 10 px or 10 ppt
+        #bindsym Down resize grow height 10 px or 10 ppt
+        #bindsym Up resize shrink height 10 px or 10 ppt
+        #bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        #bindsym Return mode "default"
+        #bindsym Escape mode "default"
+#}
+
+#bindsym $mod+r mode "resize"
+
+#调节音量  
+bindsym XF86AudioRaiseVolume exec pamixer -i 5 
+bindsym XF86AudioLowerVolume exec pamixer -d 5 
+bindsym XF86AudioMute exec pamixer -t
