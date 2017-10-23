@@ -60,7 +60,7 @@ exec --no-startup-id compton &
 exec --no-startup-id google-chrome-stable
 exec --no-startup-id xfce-terminal
 exec --no-startup-id sleep 1;telegram-desktop;
-
+#exec --no-startup-id blueman-applet
 #锁屏
 bindsym $mod+Shift+l exec i3lock -i ~/.config/i3/lock.png , exec sleep .1 && exec xset dpms force off
 
@@ -191,7 +191,7 @@ bindsym $mod+Shift+r restart
 set $mode_system 系统:锁屏(L) 注销(E) 关机(O) 重启(R) 取消(Esc)
 bindsym $mod+Shift+e mode "$mode_system"
 mode "$mode_system" {
-    bindsym l exec i3lock -i ~/Pictures/lock.png  , exec sleep .1 && exec xset dpms force off, mode "default"
+    bindsym l exec i3lock -i ~/.config/i3/lock.png  , exec sleep .1 && exec xset dpms force off, mode "default"
     bindsym e exec --no-startup-id killall i3, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym o exec --no-startup-id systemctl poweroff, mode "default"
