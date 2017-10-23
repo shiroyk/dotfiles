@@ -14,7 +14,7 @@
 ### 音量 :pamixer
 ### Dmenu :rofi
 ### 壁纸 :feh
-
+### 字体 :monaco , awesome
 
 * * *
 
