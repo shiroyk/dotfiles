@@ -5,7 +5,7 @@
 
 
 ## 软件
-### i3lock,i3status,i3-gaps
+### i3lock,i3status,i3-gaps,xautolock
 ### WIFI :nm-applet
 ### 电源管理 :mate-power-manager
 ### 输入法 :fcitx
@@ -15,6 +15,7 @@
 ### Dmenu :rofi
 ### 壁纸 :feh
 ### 字体 :monaco , awesome
+
 
 * * *
 
