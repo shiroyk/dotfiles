@@ -15,7 +15,7 @@ bar {
 	#position top
 	#mode hide
 	workspace_buttons yes
-	output eDP1
+	#output eDP1
 	tray_output primary
 	tray_padding 2
 	separator_symbol "   "
@@ -58,27 +58,31 @@ exec --no-startup-id nm-applet
 exec --no-startup-id sleep 1;fcitx;
 exec --no-startup-id compton &
 exec --no-startup-id google-chrome-stable
-exec --no-startup-id xfce-terminal
-exec --no-startup-id sleep 1;telegram-desktop;
+exec --no-startup-id xfce4-terminal
+#exec --no-startup-id sleep 1;telegram-desktop;
 #exec --no-startup-id blueman-applet
+
 #锁屏
-bindsym $mod+Shift+l exec i3lock -i ~/.config/i3/lock.png , exec sleep .1 && exec xset dpms force off
+#bindsym $mod+Shift+l exec i3lock -i ~/.config/i3/lock.png, exec sleep .1 && exec xset dpms force off
+bindsym $mod+Shift+l exec "~/.config/i3/lock"
+exec xautolock -time 10 -locker '~/.config/i3/lock' &
 
 #程序自动移至工作区
 assign [class="(?i)xfce-terminal"] → $WS1
 assign [class="(?i)Google-chrome"] → $WS2
 assign [class="(?i)telegram"] → $WS3
-assign [class="(?i)virtualbox"] → $WS4
-assign [class="(?i)wps"] → $WS5
-assign [class="(?i)wpp"] → $WS5
-assign [class="(?i)gimp"] → $WS5
+assign [class="(?i)virtualbox"] → $WS5
+assign [class="(?i)wps"] → $WS4
+assign [class="(?i)wpp"] → $WS4
+assign [class="(?i)gimp"] → $WS4
+assign [class="(?i)haroopad"] → $WS4
 
 #工作区名称
 set $WS1   
 set $WS2   
 set $WS3   
-set $WS4   
-set $WS5   
+set $WS4   
+set $WS5   
 set $WS6   
 set $WS7   
 set $WS8   
@@ -88,7 +92,7 @@ set $WS0   
 # => 工作区切换
 # 自动切换到新打开的窗口
 focus_on_window_activation smart
-
+workspace $WS2 output HDMI1
 # 重复切换到当前工作区时会返回上一个所在工作区
 workspace_auto_back_and_forth yes
 
@@ -148,6 +152,7 @@ for_window [class="(?i)arandr"] floating enable
 for_window [class="(?i)fcitx-configtool"] floating enable
 for_window [class="(?i)feh"] floating enable
 for_window [class="(?i)nmtui"] floating enable
+for_window [class="(?i)haroopad"] floating enable
 
 #隐藏显示程序(minus is "-" and plus is "+".)
 bindsym $mod+minus move scratchpad

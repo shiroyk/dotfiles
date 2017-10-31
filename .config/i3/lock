@@ -1,0 +1,7 @@
+#!/bin/sh -e
+#截取当前屏幕作为锁屏图片
+#scrot /tmp/screen_locked.png
+#mogrify -scale 10% -scale 1000% /tmp/screen_locked.png
+
+# Lock screen displaying this image.
+i3lock -i ~/.config/i3/lock.png & xautolock -time 0.5 -locker "xset dpms force off"
