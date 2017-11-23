@@ -5,7 +5,7 @@
 
 
 ## 软件
-### i3lock,i3status,i3-gaps,xautolock
+### i3lock,i3status,i3-gaps,xautolock,[i3lock-fancy](https://github.com/meskarune/i3lock-fancy)
 ### WIFI :nm-applet
 ### 电源管理 :mate-power-manager
 ### 输入法 :fcitx
