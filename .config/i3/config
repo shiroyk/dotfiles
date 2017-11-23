@@ -18,12 +18,12 @@ bar {
 	#output eDP1
 	tray_output primary
 	tray_padding 2
-	separator_symbol "   "
+	separator_symbol "  "
 	#height 25	
 	colors {
 	background #00000000
 	statusline #FFFFFF
-	separator #00A5FF
+	separator #1E90FF
 	# 工作区颜色         边框    背景    文字
         focused_workspace  #00000000 #1E90FF #FFFFFF
         active_workspace   #00000000 #00000000 #FFFFFF
@@ -53,7 +53,7 @@ bindsym $mod+d exec --no-startup-id bash ~/.config/i3/rofi
 #bindsym $mod+d exec dmenu_run  -fn 'Monaco' -sf '#ffffff' -sb '#fb7299' 
 
 #自动启动
-exec --no-startup-id mate-power-manager
+exec --no-startup-id mate-power-manager 
 exec --no-startup-id nm-applet
 exec --no-startup-id sleep 1;fcitx;
 exec --no-startup-id compton &
@@ -61,9 +61,9 @@ exec --no-startup-id google-chrome-stable
 exec --no-startup-id xfce4-terminal
 #exec --no-startup-id sleep 1;telegram-desktop;
 #exec --no-startup-id blueman-applet
+exec --no-startup-id onboard 
 
 #锁屏
-#bindsym $mod+Shift+l exec i3lock -i ~/.config/i3/lock.png, exec sleep .1 && exec xset dpms force off
 bindsym $mod+Shift+l exec "~/.config/i3/lock"
 exec xautolock -time 10 -locker '~/.config/i3/lock' &
 
@@ -92,7 +92,7 @@ set $WS0   
 # => 工作区切换
 # 自动切换到新打开的窗口
 focus_on_window_activation smart
-workspace $WS2 output HDMI1
+#workspace $WS2 output DP1
 # 重复切换到当前工作区时会返回上一个所在工作区
 workspace_auto_back_and_forth yes
 
@@ -142,6 +142,11 @@ gaps outer 5
 #浮动窗口
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
+for_window [instance="(?i)QQProtect.exe"] floating enable
+for_window [instance="(?i)QQProtect.exe"] border none
+for_window [instance="(?i)TIM.exe"] border none
+for_window [instance="(?i)TIM.exe"] floating enable
+for_window [window_role="(?i)thunar"] floating enable
 
 #自定义程序浮动(find the programs'names in "/usr/share/applictions")
 #for_window [class="VirtualBox"] floating enable
@@ -208,30 +213,30 @@ mode "$mode_system" {
 exec --no-startup-id xset dpms 600 1200 6000
 
 #改变窗口大小 (you can also use the mouse for that)
-#mode "resize" {
+mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        #bindsym j resize shrink width 10 px or 10 ppt
-        #bindsym k resize grow height 10 px or 10 ppt
-        #bindsym l resize shrink height 10 px or 10 ppt
-        #bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        #bindsym Left resize shrink width 10 px or 10 ppt
-        #bindsym Down resize grow height 10 px or 10 ppt
-        #bindsym Up resize shrink height 10 px or 10 ppt
-        #bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape
-        #bindsym Return mode "default"
-        #bindsym Escape mode "default"
-#}
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
-#bindsym $mod+r mode "resize"
+bindsym $mod+r mode "resize"
 
 #调节音量  
 bindsym XF86AudioRaiseVolume exec pamixer -i 5 
