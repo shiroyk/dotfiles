@@ -1,2 +1,2 @@
-#!/bin/sh 
-i3lock-fancy -gt QwQ -- scrot -z ; sleep 1 ; xset dpms force off 
+#!/bin/sh
+i3lock-fancy -t locked -- scrot -z ; sleep 1 ; xset dpms force off

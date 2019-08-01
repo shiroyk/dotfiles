@@ -3,23 +3,22 @@
 # Thinks https://github.com/ID1258/oh-my-i3
 # Super key(mod4 =windows logo key/Command key)
 set $mod Mod4
-#字体
+# 字体
 font pango:monaco regular 12
 
 #---bar---
 bar {
-	status_command  i3status -c ~/.config/i3/i3status
-	#status_command conky -c ~/.config/i3/conky
+	status_command py3status -c .config/i3/i3status
 	i3bar_command i3bar -t
 	font pango:monaco regular 12
-	#position top
+	position top
 	#mode hide
 	workspace_buttons yes
 	#output eDP1
-	tray_output primary
+	#tray_output primary
 	tray_padding 2
 	separator_symbol "  "
-	#height 25	
+	#height 25
 	colors {
 	background #00000000
 	statusline #FFFFFF
@@ -29,7 +28,7 @@ bar {
         active_workspace   #00000000 #00000000 #FFFFFF
         inactive_workspace #00000000 #00000000 #FFFFFF
         urgent_workspace   #00000000 #FB7299 #FFFFFF
-        binding_mode       #00000000 #00000000 #FFFFFF	
+        binding_mode       #00000000 #00000000 #FFFFFF
 	}
 }
 
@@ -50,34 +49,32 @@ exec --no-startup-id bash ~/.config/i3/wallpaper &
 
 #程序菜单 (Please install rofi)
 bindsym $mod+d exec --no-startup-id bash ~/.config/i3/rofi
-#bindsym $mod+d exec dmenu_run  -fn 'Monaco' -sf '#ffffff' -sb '#fb7299' 
 
 #自动启动
-exec --no-startup-id mate-power-manager 
 exec --no-startup-id nm-applet
 exec --no-startup-id sleep 1;fcitx;
-exec --no-startup-id compton &
+exec --no-startup-id compton -o 0 -D 0 -b
+exec --no-startup-id dunst
 exec --no-startup-id google-chrome-stable
 exec --no-startup-id xfce4-terminal
 #exec --no-startup-id sleep 1;telegram-desktop;
 #exec --no-startup-id blueman-applet
-exec --no-startup-id onboard 
 
-#锁屏
+#锁屏 lock
 bindsym $mod+Shift+l exec "~/.config/i3/lock"
 exec xautolock -time 10 -locker '~/.config/i3/lock' &
 
 #程序自动移至工作区
 assign [class="(?i)xfce-terminal"] → $WS1
 assign [class="(?i)Google-chrome"] → $WS2
-assign [class="(?i)telegram"] → $WS3
-assign [class="(?i)virtualbox"] → $WS5
-assign [class="(?i)wps"] → $WS4
-assign [class="(?i)wpp"] → $WS4
-assign [class="(?i)gimp"] → $WS4
-assign [class="(?i)haroopad"] → $WS4
+#assign [class="(?i)telegram"] → $WS3
+#assign [class="(?i)virtualbox"] → $WS5
+#assign [class="(?i)wps"] → $WS4
+#assign [class="(?i)wpp"] → $WS4
+#assign [class="(?i)gimp"] → $WS4
+#assign [class="(?i)haroopad"] → $WS4
 
-#工作区名称
+#工作区名称 workspace name
 set $WS1   
 set $WS2   
 set $WS3   
@@ -89,7 +86,7 @@ set $WS8   
 set $WS9   
 set $WS0   
 
-# => 工作区切换
+# => 工作区切换 switch workspace
 # 自动切换到新打开的窗口
 focus_on_window_activation smart
 #workspace $WS2 output DP1
@@ -124,7 +121,7 @@ new_window none
 new_float normal
 hide_edge_borders both
 
-# 窗口颜色                边框    背景    文字    提示
+# 窗口颜色                边框     背景     文字     提示
 client.focused          #333333 #333333 #FFFFFF #333333
 client.focused_inactive #999999 #999999 #FFFFFF #3399FF
 client.unfocused        #999999 #999999 #FFFFFF #3399FF
@@ -147,17 +144,21 @@ for_window [instance="(?i)QQProtect.exe"] border none
 for_window [instance="(?i)TIM.exe"] border none
 for_window [instance="(?i)TIM.exe"] floating enable
 for_window [window_role="(?i)thunar"] floating enable
+for_window [instance="(?i)gnome-photos"] floating enable
 
 #自定义程序浮动(find the programs'names in "/usr/share/applictions")
 #for_window [class="VirtualBox"] floating enable
 for_window [class="(?i)thunar"] floating enable
 for_window [class="(?i)leafpad"] floating enable
-#for_window [class="(?i)telegram"] floating enable
+for_window [class="(?i)telegram"] floating enable
 for_window [class="(?i)arandr"] floating enable
 for_window [class="(?i)fcitx-configtool"] floating enable
 for_window [class="(?i)feh"] floating enable
 for_window [class="(?i)nmtui"] floating enable
 for_window [class="(?i)haroopad"] floating enable
+for_window [class="(?i)lxappearance"] floating enable
+for_window [class="(?i)spotify"] floating enable
+for_window [class="(?i)gnome-photos"] floating enable
 
 #隐藏显示程序(minus is "-" and plus is "+".)
 bindsym $mod+minus move scratchpad
@@ -238,7 +239,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-#调节音量  
-bindsym XF86AudioRaiseVolume exec pamixer -i 5 
-bindsym XF86AudioLowerVolume exec pamixer -d 5 
+#调节音量
+bindsym XF86AudioRaiseVolume exec pamixer -i 5
+bindsym XF86AudioLowerVolume exec pamixer -d 5
 bindsym XF86AudioMute exec pamixer -t

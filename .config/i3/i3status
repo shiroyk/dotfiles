@@ -6,65 +6,117 @@
 # ß
 # If the above line is not correctly displayed, fix your editor first!
 
+# button numbers
+#1 = left click
+#2 = middle click
+#3 = right click
+#4 = scroll up
+#5 = scroll down
+
 general {
+        output_format = "i3bar"
         colors = true
-	output_format=i3bar
         interval = 1
-    color_good = '#fb7299'
-    color_bad = '#EE0022'
-    color_degraded = '#F2D02B'
+        color = "#FFFFFF"
+        color_good = "#89DDFF"
+        color_degraded = "#F2D02B"
+        color_bad = "#FB7299"
 }
 
+order += "frame default"
 
-#order += "ethernet _first_"
-order += "cpu_usage"
-order += "cpu_temperature 0"
-order += "wireless _first_"
-order += "volume master"
-order += "battery 0"
-order += "tztime local"
 
-wireless _first_ {
-        format_up = " %essid%quality"
+
+frame default {
+#    window_title {
+#        format = '[\?max_length=30 {title}]'
+#    }
+
+    spotify {
+        button_play_pause = 1 #1 = left click
+        button_previous = 4   #4 = scroll up
+        button_next = 5       #5 = scroll down
+        format = "[\?max_length=25  {title} - {artist}]"
         format_down = ""
-}
+        color_paused = "#FB7299"
+        color_offline = "#FB7299"
+    }
 
-battery 0 {
+
+    volume_status {
+      cache_timeout = 0.1
+      button_mute = 2 #2 = middle click
+      button_up = 4   #4 = scroll up
+      button_down = 5 #5 = scroll down
+      format = " {percentage}"
+      format_muted = " Muted"
+      command = "pamixer"
+      thresholds = [
+        (0, "bad"),
+        (10, "degraded"),
+        (20, "good"),
+        (30, "color")
+        ]
+    }
+
+    conky cpu {
+        format = ' '
+        format += '[\?color=cpu {cpu}%]'
+        thresholds = [
+            (0, 'darkgray'), (0.001, 'color'), (60, 'good'),
+            (75, 'degraded'), (85, 'bad')
+        ]
+    }
+
+    conky cpu_tem {
+        format = ' '
+        format += '[\?color=memperc {hwmon 2 temp 1}°C]'
+        thresholds = [
+            (0, 'darkgray'), (0.001, 'color'), (60, 'good'),
+            (75, 'degraded'), (85, 'bad')
+        ]
+    }
+
+    conky memory {
+        format = ' '
+        format += '[\?color=memperc {memperc}%]'
+        thresholds = [
+            (0, 'darkgray'), (0.001, 'color'), (60, 'good'),
+            (75, 'degraded'), (85, 'bad')
+        ]
+    }
+
+
+    wifi {
+        format_up = " {ssid}"
+        format_down = ""
+	#on_click 1 = "exec nm-connection-editor"
+    }
+
+    wwan_status {
+        format_up = " {ip}"
+        format_down = ""
+	#on_click 1 = "exec nm-connection-editor"
+    }
+
+    battery_level {
         format = "%status %percentage"
         format_down = "No battery"
         status_chr = ""
         status_bat = ""
         status_full = ""
-	status_unk = ""
-        path = 	"/sys/class/power_supply/BAT0/uevent"
+        status_unk = ""
+        path = "/sys/class/power_supply/BAT0/uevent"
         low_threshold = 20
-	threshold_type= time
-	last_full_capacity = true
-	integer_battery_capacity = true
-}
+        threshold_type = time
+        last_full_capacity = true
+        integer_battery_capacity = true
+        hide_seconds = true
+        hide_when_full = true
+    }
 
-
-tztime local {
-        format = " %H:%M"
-
-
-}
-
-cpu_temperature 0 {
-        format = " %degrees°C" #%degress
-	max_threshold = 60
-	path = "/sys/class/thermal/thermal_zone1/temp"
-}
-
-cpu_usage {
-	format = " %usage"
-	degraded_threshold = 25
-}
-
-volume master {
-        format = " %volume"
-        format_muted = "  Muted"
-        device = "default"
-        mixer = "Master"
-        mixer_idx = 0
+    clock {
+        format ="{Local}"
+        format_time = [" %H:%M"]
+    }
 }

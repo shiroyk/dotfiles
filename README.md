@@ -1,27 +1,35 @@
-# My i3-config
+# My i3config
 
 
 * * *
 
 
-## 软件
-### i3lock,i3status,i3-gaps,xautolock,[i3lock-fancy](https://github.com/meskarune/i3lock-fancy)
-### WIFI :nm-applet
-### 电源管理 :mate-power-manager
-### 输入法 :fcitx
-### 终端 :xfce4-terminal
-### 终端透明 :compton
-### 音量 :pamixer
-### Dmenu :rofi
-### 壁纸 :feh
-### 字体 :monaco , awesome
+### Official repositories
+
+>sudo pacman -S i3-wm i3blocks i3lock i3status i3-gaps [py3status](https://py3status.readthedocs.io/en/latest/configuration.html) pamixer conky xautolock ttf-font-awesome compton xfce4-terminal rofi feh blueman networkmanager
+
+### Arch User Repository
+
+>yaourt -S [i3lock-fancy-git](https://github.com/meskarune/i3lock-fancy) python-pyserial python-netifaces python-pytz python-tzlocal ttf-monaco
+
+
+### Network : NetworkManager
+### Bluetooth : blueman
+### Input : fcitx
+### Terminal : xfce4-terminal
+### Compositor : compton
+### Volume : pamixer
+### Dmenu : rofi
+### Wallpaper : feh
+### Fonts : monaco , font-awesome
+### Py3status modules ：python-pyserial python-netifaces python-pytz python-tzlocal
 
 
 * * *
 
 
-### 截图
+### Screenshots
 
-![](https://raw.githubusercontent.com/xunne/i3-config/master/screenshots1.png)
+![](https://raw.githubusercontent.com/shiroyk/i3-config/master/screenshots1.png)
 
-![](https://raw.githubusercontent.com/xunne/i3-config/master/screenshots2.png)
+![](https://raw.githubusercontent.com/shiroyk/i3-config/master/screenshots2.png)

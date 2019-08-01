@@ -1,0 +1,47 @@
+[global]
+    font = Monaco 12
+    allow_markup = yes
+    format = "<b>%s</b>\n%b"
+    sort = yes
+    indicate_hidden = yes
+    alignment = left
+    bounce_freq = 10
+    show_age_threshold = 60
+    word_wrap = yes
+    ignore_newline = no
+    geometry = "350x10-35+35"
+    shrink = no
+    transparency = 25
+    idle_threshold = 120
+    monitor = 0
+    follow = mouse
+    sticky_history = yes
+    history_length = 20
+    show_indicators = yes
+    line_height = 0
+    separator_height = 4
+    padding = 6
+    horizontal_padding = 6
+    separator_color = frame
+    startup_notification = false
+    dmenu = /usr/bin/dmenu -p dunst:
+    browser = /usr/bin/chromium -new-tab
+    icon_position = right
+    icon_folders = /usr/share/icons/Numix/16/status/:/usr/share/icons/Numix/16/devices/
+[frame]
+    width = 3
+    color = "#AAAAAA"
+    background = "#9ACD32"
+    foreground = "#556B2F"
+[urgency_low]
+    background = "#0f0f0f"
+    foreground = "#fffaff"
+    timeout = 10
+[urgency_normal]
+    background = "#0f0f0f"
+    foreground = "#fffaff"
+    timeout = 10
+[urgency_critical]
+    background = "#0f0f0f"
+    foreground = "#fffaff"
+    timeout = 0

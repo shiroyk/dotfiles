@@ -4,5 +4,3 @@ export LC_CTYPE=en_US.UTF-8
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
-
-xrandr --newmode "1620x1080_60.00"  145.50  1620 1728 1896 2168  1080 1083 1093 1120 -hsync +vsync && xrandr --addmode eDP1 1620x1080_60.00 && xrandr --output eDP1  --mode 1620x1080_60.00
