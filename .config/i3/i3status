@@ -31,6 +31,15 @@ frame default {
 #    window_title {
 #        format = '[\?max_length=30 {title}]'
 #    }
+    netease {
+        button_play_pause = 1 #1 = left click
+        button_previous = 4   #4 = scroll up
+        button_next = 5       #5 = scroll down
+        format = "[\?max_length=25  {title} - {artist}]"
+        format_down = ""
+        color_paused = "#FB7299"
+        color_offline = "#FB7299"
+    }
 
     spotify {
         button_play_pause = 1 #1 = left click
@@ -88,16 +97,16 @@ frame default {
 
 
     wifi {
-        format_up = " {ssid}"
+        format = " {ssid}"
         format_down = ""
-	#on_click 1 = "exec nm-connection-editor"
+	    on_click 1 = "exec nm-connection-editor"
     }
 
-    wwan_status {
-        format_up = " {ip}"
-        format_down = ""
-	#on_click 1 = "exec nm-connection-editor"
-    }
+   wwan_status {
+       format = " {ip}"
+       format_down = ""
+       on_click 1 = "exec nm-connection-editor"
+}
 
     battery_level {
         format = "%status %percentage"
