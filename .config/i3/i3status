@@ -99,10 +99,10 @@ frame default {
     wifi {
         format = " {ssid}"
         format_down = ""
-	    on_click 1 = "exec nm-connection-editor"
+        on_click 1 = "exec nm-connection-editor"
     }
 
-   wwan_status {
+    wwan_status {
        format = " {ip}"
        format_down = ""
        on_click 1 = "exec nm-connection-editor"
