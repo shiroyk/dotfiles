@@ -1,6 +1,6 @@
 # i3 config file
 # see http://i3wm.org/docs/userguide.html for a complete reference!
-# Thinks https://github.com/ID1258/oh-my-i3
+# Thanks https://github.com/ID1258/oh-my-i3
 # Super key(mod4 =windows logo key/Command key)
 set $mod Mod4
 # 字体
@@ -8,7 +8,7 @@ font pango:monaco regular 12
 
 #---bar---
 bar {
-	status_command py3status -c .config/i3/i3status
+	status_command  py3status -c .config/i3/i3status
 	i3bar_command i3bar -t
 	font pango:monaco regular 12
 	position top
@@ -58,7 +58,7 @@ exec --no-startup-id dunst
 exec --no-startup-id google-chrome-stable
 exec --no-startup-id xfce4-terminal
 #exec --no-startup-id sleep 1;telegram-desktop;
-#exec --no-startup-id blueman-applet
+exec --no-startup-id blueman-applet
 
 #锁屏 lock
 bindsym $mod+Shift+l exec "~/.config/i3/lock"
@@ -144,7 +144,7 @@ for_window [instance="(?i)QQProtect.exe"] border none
 for_window [instance="(?i)TIM.exe"] border none
 for_window [instance="(?i)TIM.exe"] floating enable
 for_window [window_role="(?i)thunar"] floating enable
-for_window [instance="(?i)gnome-photos"] floating enable
+for_window [instance="(?i)anbox"] floating enable
 
 #自定义程序浮动(find the programs'names in "/usr/share/applictions")
 #for_window [class="VirtualBox"] floating enable
@@ -158,7 +158,11 @@ for_window [class="(?i)nmtui"] floating enable
 for_window [class="(?i)haroopad"] floating enable
 for_window [class="(?i)lxappearance"] floating enable
 for_window [class="(?i)spotify"] floating enable
+for_window [class="(?i)netease-cloud-music"] floating enable
 for_window [class="(?i)gnome-photos"] floating enable
+for_window [class="(?i)baobab"] floating enable
+for_window [class="(?i)nm-connection-editor"] floating enable
+for_window [class="(?i)pavucontrol"] floating enable
 
 #隐藏显示程序(minus is "-" and plus is "+".)
 bindsym $mod+minus move scratchpad
